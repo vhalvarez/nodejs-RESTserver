@@ -1,4 +1,3 @@
-
 const IP_SERVER = 'localhost';
 const portDB = 27017;
 const nameDB = 'super-cafe';
@@ -10,8 +9,7 @@ let urlDB;
 if (process.env.NODE_ENV === 'dev') {
     urlDB = `mongodb://${IP_SERVER}:${portDB}/${nameDB}`;
 } else {
-    urlDB =
-        'mongodb+srv://kreyy:leedskreyy@cluster0.hfbya.mongodb.net/café';
+    urlDB = process.env.MONGO_URI;
 }
 
 process.env.URLDB = urlDB;
