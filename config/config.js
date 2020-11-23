@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'dev') {
     urlDB = `mongodb://${IP_SERVER}:${portDB}/${nameDB}`;
 } else {
     urlDB =
-        'mongodb+srv://kreyy:leedskreyy@cluster0.hfbya.mongodb.net/test';
+        'mongodb+srv://kreyy:leedskreyy@cluster0.hfbya.mongodb.net/café';
 }
 
 process.env.URLDB = urlDB;
