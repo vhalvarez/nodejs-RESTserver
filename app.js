@@ -1,20 +1,24 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-var cors = require('cors');
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const path = require('path')
 
 //Load routings
-const userRoutes = require('./routers/user');
-const loginRoutes = require('./routers/login');
+const userRoutes = require('./routers/user')
+const loginRoutes = require('./routers/login')
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
-// CORS
-app.use(cors());
+
+app.use(express.static(path.resolve(__dirname + '/public')))
+
+//  cORS
+app.use(cors())
 
 //Router Basic
-app.use(`/api/v1`, userRoutes);
-app.use(`/api/v1`, loginRoutes);
+app.use(`/api/v1`, userRoutes)
+app.use(`/api/v1`, loginRoutes)
 
-module.exports = app;
+module.exports = app
