@@ -91,7 +91,7 @@ const usuario = {
         let limit = req.query.limit || 0;
         limit = Number(limit);
 
-        User.find({estado: true}, 'nombre email google')
+        User.find({ estado: true }, 'nombre email google')
             .skip(desde)
             .limit(limit)
             .exec((err, usuarios) => {
@@ -102,41 +102,49 @@ const usuario = {
                     });
                 }
 
-                User.count({estado: true}, (err, conteo) => {
-                    res.json({
-                        ok: true,
-                        usuarios,
-                        totalUsuarios: conteo,
-                    });
-                });
+                User.count(
+                    { estado: true },
+                    (err, conteo) => {
+                        res.json({
+                            ok: true,
+                            usuarios,
+                            totalUsuarios: conteo,
+                        });
+                    }
+                );
             });
     },
 
     deleteUser: (req, res) => {
         const id = req.params.id;
 
-        User.findByIdAndUpdate(id, { estado: false } ,(err, userDelete) => {
-            if (err) {
-                res.status(400).json({
-                    ok: false,
-                    err,
+        User.findByIdAndUpdate(
+            id,
+            { estado: false },
+            (err, userDelete) => {
+                if (err) {
+                    res.status(400).json({
+                        ok: false,
+                        err,
+                    });
+                }
+
+                if (!userDelete) {
+                    res.status(400).json({
+                        ok: false,
+                        err: {
+                            message:
+                                'usuario no encontrado',
+                        },
+                    });
+                }
+
+                res.json({
+                    ok: true,
+                    usuario: userDelete,
                 });
             }
-
-            if (!userDelete) {
-                res.status(400).json({
-                    ok: false,
-                    err: {
-                        message: 'usuario no encontrado',
-                    },
-                });
-            }
-
-            res.json({
-                ok: true,
-                usuario: userDelete,
-            });
-        });
+        );
     },
 };
 
