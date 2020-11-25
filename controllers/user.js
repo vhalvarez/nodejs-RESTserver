@@ -20,25 +20,6 @@ const usuario = {
             role,
         });
 
-        // if (
-        //     password.length == 0 ||
-        //     repeatPassword.length == 0
-        // ) {
-        //     return res.status(400).json({
-        //         ok: false,
-        //         message:
-        //             'Las contraseñas son obligatorias.',
-        //     });
-        // } else {
-        //     if (password !== repeatPassword) {
-        //         return res.status(400).json({
-        //             ok: false,
-        //             message:
-        //                 'Las contraseñas no son iguales.',
-        //         });
-        //     }
-        // }
-
         user.save((err, userDB) => {
             if (err) {
                 return res.status(400).json({

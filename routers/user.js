@@ -9,7 +9,7 @@ const api = express.Router();
 
 api.post(
     '/usuario',
-    [verificaToken, verificaAdmin_Role],
+    [verificaToken],
     UserControllers.createUser
 );
 api.put(
